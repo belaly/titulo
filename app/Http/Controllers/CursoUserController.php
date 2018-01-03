@@ -16,13 +16,14 @@ class CursoUserController extends Controller
         
         $id_curso = $request->input('id_curso');
         $id_user = $request->input('id_user');
-        $cursos_users = CursoUser::where('id_curso', $id_curso)
-            ->where('id_user', $id_user)->first();
+        $cursos_users = CursoUser::where('id_curso', $id_curso)->where('id_user', $id_user)->first();
+
         if ($cursos_users)
             return back()->with('notification', 'El usuario ya pertenece a este curso.');
+
         $cursos_users = new CursoUser();
-        $cursos_users->project_id = $id_curso;
-        $cursos_users->user_id = $id_user;
+        $cursos_users->id_curso = $id_curso;
+        $cursos_users->id_user = $id_user;
 
         $cursos_users->save();
         return back();
