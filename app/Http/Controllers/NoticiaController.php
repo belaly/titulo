@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class NoticiaController extends Controller
 {
@@ -25,7 +26,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.noticias.create');
     }
 
     /**
@@ -36,7 +37,14 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $noticia = Noticia::create([
+            'fecha' => $request->fecha,
+            'name' => $request->name,
+            'contenido' => $request->contenido,
+        ]);
+        $noticia->save();
+
+        return Redirect::route('noticia.index');
     }
 
     /**
@@ -56,9 +64,11 @@ class NoticiaController extends Controller
      * @param  \App\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Noticia $noticia)
+    public function edit($id)
     {
-        //
+        $noticia = Noticia::find($id);
+
+        return view('Admin.noticias.edit', ['noticia'   => $noticia]);
     }
 
     /**
@@ -68,9 +78,15 @@ class NoticiaController extends Controller
      * @param  \App\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Noticia $noticia)
+    public function update(Request $request, $id)
     {
-        //
+        $noticia = Noticia::find($id);
+        $noticia->fecha = $request->fecha;
+        $noticia->name = $request->name;
+        $noticia->contenido = $request->contenido;
+
+        $noticia->save();
+        return Redirect::route('noticia.index');
     }
 
     /**
@@ -79,8 +95,10 @@ class NoticiaController extends Controller
      * @param  \App\Noticia  $noticia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Noticia $noticia)
+    public function destroy($id)
     {
-        //
+        $noticia = Noticia::find($id);
+        $noticia->delete();
+        return Redirect::route('noticia.index');
     }
 }

@@ -23,7 +23,7 @@
             <div class="navbar-header">
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand">
                     {{ 'LinKids - BIENVENIDO ADMINISTRADOR' }}
                 </a>
             </div>

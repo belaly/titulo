@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Curso;
+use CursoUser;
 use Illuminate\Support\Facades\Redirect;
 use Hash;
 
@@ -84,8 +86,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $cursos = Curso::all();
 
-            return view('Admin.usuarios.edit', ['user'   => $user]);
+        $cursos_users = CursoUser::where('id_user', $user->id)->get();
+
+            return view('Admin.usuarios.edit') -> with(compact('user', 'cursos', 'cursos_users'));
 
     }
 

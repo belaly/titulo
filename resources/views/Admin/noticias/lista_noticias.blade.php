@@ -29,8 +29,8 @@
             @foreach( $noticias as $noticia )
                 <tr>
                     <td>{{ $noticia->fecha }}</td>
-                    <td>{{ $noticia->nombre }}</td>
-                    <td>{{ $noticia->noticia }}</td>
+                    <td>{{ $noticia->name }}</td>
+                    <td>{{ $noticia->contenido }}</td>
                     <td align="center"> <a href="{{route('noticia.edit', $noticia->id)}}" class="btn btn-primary btn-sm" title="Editar"><span class="glyphicon glyphicon-pencil "></span></a> </td>
 
                     <td>

@@ -34,7 +34,7 @@ class User extends Authenticatable
 
 
     public function cursos(){
-        return $this->belongsToMany('App\Curso', 'user_curso', 'id_user', 'id_curso');
+        return $this->belongsToMany('App\Curso', 'cursos_users', 'id_user', 'id_curso');
     }
 
 

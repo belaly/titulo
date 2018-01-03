@@ -17,7 +17,7 @@ class CreateNoticiasTable extends Migration
             $table->increments('id');
             $table->string('fecha');
             $table->string('name');
-            $table->string('noticia');
+            $table->string('contenido');
 
             $table->integer('id_user')->unsigned()->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

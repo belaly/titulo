@@ -51,6 +51,42 @@
                  </div>
              </form>
 
+
+                <form action="/curso-educadora" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <select name="id_curso" class="form-control" >
+                                <option value="">Seleccione curso</option>
+                                @foreach ($cursos as $curso)
+                                    <option value="{{ $curso->id }}">{{ $curso->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <button class="btn btn-primary btn-block">Asignar Curso</button>
+                        </div>
+                    </div>
+                </form>
+
+                <p>Cursos asignados</p>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Curso</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($cursos_users as $curso_user)
+                        <tr>
+                            <td>{{ $curso_user->curso->name }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
          </div>
 
      </div>
